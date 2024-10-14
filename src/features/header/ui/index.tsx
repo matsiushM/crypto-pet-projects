@@ -1,9 +1,9 @@
 import {Autocomplete, Box, TextField} from "@mui/material";
 import {SyntheticEvent, useEffect, useState} from "react";
-import {cryptoDataModel} from "../../../shared/model/cryproData.ts";
-import {cryptoList} from "../../../shared/api";
-import {$selectedCrypto, events} from "../../../entities/model";
-
+import {cryptoDataModel} from "shared/model/cryproData.ts";
+import {cryptoList} from "shared/api";
+import {useUnit} from "effector-react/effector-react.mjs";
+import {$selectedCrypto, events} from "entities/model";
 
 const styles = {
     boxHeader: {
@@ -27,19 +27,15 @@ const styles = {
 
 export const HeaderApp = () => {
     const [cryptoData, setCryptoData] = useState<cryptoDataModel[]>([]);
-    const [cryptoSelected, setCryptoSelected] = useState<cryptoDataModel[]>([])
+    const selectCoin = useUnit($selectedCrypto);
 
     useEffect(() => {
         cryptoList().then(res => {
             setCryptoData(res.data)
         });
-
-        setCryptoSelected(JSON.parse(localStorage.getItem("cryptoSelected")));
     }, [])
 
     const handleChange = (_: SyntheticEvent<Element, Event>, value: cryptoDataModel[]) => {
-        setCryptoSelected(value)
-        localStorage.setItem("cryptoSelected", JSON.stringify(value));
         events.addCoin(value);
     }
 
@@ -53,7 +49,7 @@ export const HeaderApp = () => {
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 options={cryptoData}
                 onChange={handleChange}
-                value={cryptoSelected}
+                value={selectCoin}
                 disableCloseOnSelect
                 disabledItemsFocusable
                 renderInput={(params) => (

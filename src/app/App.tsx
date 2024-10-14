@@ -1,6 +1,6 @@
 import {Box} from "@mui/material";
-import {HomePage} from "../pages/main";
-import {HeaderApp} from "../features/header";
+import {HomePage} from "pages/main";
+import {HeaderApp} from "features/header";
 
 const styles = {
     layoutBox: {
