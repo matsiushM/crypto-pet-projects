@@ -1,9 +1,10 @@
 import {Autocomplete, Box, TextField} from "@mui/material";
 import {SyntheticEvent, useEffect, useState} from "react";
-import {cryptoDataModel} from "shared/model/cryproData.ts";
+import {useUnit} from "effector-react";
+
 import {cryptoList} from "shared/api";
-import {useUnit} from "effector-react/effector-react.mjs";
-import {$selectedCrypto, events} from "entities/model";
+import {$selectedCrypto, addCoin} from "entities/model";
+import {cryptoDataModel} from "shared/model/cryproData";
 
 const styles = {
     boxHeader: {
@@ -36,7 +37,7 @@ export const HeaderApp = () => {
     }, [])
 
     const handleChange = (_: SyntheticEvent<Element, Event>, value: cryptoDataModel[]) => {
-        events.addCoin(value);
+        addCoin(value);
     }
 
     return (

@@ -1,4 +1,5 @@
 import {Box} from "@mui/material";
+
 import {CryptoSelectList} from "features/cryptoSelectList";
 
 export const HomePage = () => {

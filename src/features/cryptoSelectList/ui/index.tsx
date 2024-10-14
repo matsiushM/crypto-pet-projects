@@ -1,11 +1,11 @@
 import {Box, List} from "@mui/material";
-import {$selectedCrypto} from "entities/model";
 import {useUnit} from "effector-react";
+
 import {cryptoDataModel} from "shared/model/cryproData";
 import {CryptoCard} from "shared/ui/cryptoCard";
+import {$selectedCrypto} from "entities/model";
 
 export const CryptoSelectList = () => {
-
     const coin = useUnit($selectedCrypto)
 
     return (
