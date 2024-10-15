@@ -1,10 +1,9 @@
 import {Autocomplete, Box, TextField} from "@mui/material";
-import {SyntheticEvent, useEffect, useState} from "react";
+import {SyntheticEvent, useEffect} from "react";
 import {useUnit} from "effector-react";
 
-import {cryptoList} from "shared/api";
-import {$selectedCrypto, addCoin} from "entities/model";
-import {cryptoDataModel} from "shared/model/cryproData";
+import {CryptoDataModel} from "shared/types/cryproData.ts";
+import {$selectedCrypto, $crypto, addCoin, fetchCryptoReposFx} from "entities/model/cryptoStore";
 
 const styles = {
     boxHeader: {
@@ -12,7 +11,7 @@ const styles = {
         justifyContent: "space-between",
         alignItems: "center",
         color: "#FFFFFF",
-        backgroundColor: "#2657da",
+        backgroundColor: "secondary.main",
     },
     searchComp: {
         width: '40%',
@@ -27,16 +26,14 @@ const styles = {
 }
 
 export const HeaderApp = () => {
-    const [cryptoData, setCryptoData] = useState<cryptoDataModel[]>([]);
+    const cryptoData = useUnit($crypto);
     const selectCoin = useUnit($selectedCrypto);
 
     useEffect(() => {
-        cryptoList().then(res => {
-            setCryptoData(res.data)
-        });
-    }, [])
+        fetchCryptoReposFx();
+    }, []);
 
-    const handleChange = (_: SyntheticEvent<Element, Event>, value: cryptoDataModel[]) => {
+    const handleChange = (_: SyntheticEvent<Element, Event>, value: CryptoDataModel[]) => {
         addCoin(value);
     }
 
@@ -46,7 +43,7 @@ export const HeaderApp = () => {
                 multiple
                 limitTags={2}
                 sx={styles.searchComp}
-                getOptionLabel={(cryptoData: cryptoDataModel) => cryptoData.name}
+                getOptionLabel={(cryptoData: CryptoDataModel) => cryptoData.name}
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 options={cryptoData}
                 onChange={handleChange}

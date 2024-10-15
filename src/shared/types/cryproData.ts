@@ -1,4 +1,4 @@
-export interface cryptoDataModel {
+export interface CryptoDataModel {
     id: string,
     rank: number,
     symbol: string,

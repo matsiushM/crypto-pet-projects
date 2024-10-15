@@ -6,19 +6,20 @@ import {
     IconButton,
     Typography
 } from "@mui/material";
+
 import CloseIcon from '@mui/icons-material/Close';
-import {events} from "entities/model";
-import {cryptoDataModel} from "shared/model/cryproData";
+import {CryptoDataModel} from "shared/types/cryproData.ts";
+import {removeCoin} from "entities/model/cryptoStore";
 
 
 interface props {
-    crypto: cryptoDataModel
+    crypto: CryptoDataModel
 }
 
 export const CryptoCard = ({crypto}: props) => {
 
     const onClose =()=> {
-        events.removeCoin(crypto);
+        removeCoin(crypto);
     }
 
     return (

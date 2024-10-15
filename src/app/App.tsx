@@ -5,7 +5,7 @@ import {HeaderApp} from "features/header";
 
 const styles = {
     layoutBox: {
-        backgroundColor: '#001529',
+        backgroundColor: "primary.main",
         width: "100vw",
         height: "100vh",
     }
