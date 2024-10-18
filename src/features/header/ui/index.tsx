@@ -2,7 +2,7 @@ import {Autocomplete, Box, TextField} from "@mui/material";
 import {SyntheticEvent, useEffect} from "react";
 import {useUnit} from "effector-react";
 
-import {CryptoDataModel} from "shared/types/cryproData.ts";
+import {CryptoDataModel} from "shared/types/cryproData";
 import {$selectedCrypto, $crypto, addCoin, fetchCryptoReposFx} from "entities/model/cryptoStore";
 
 const styles = {
@@ -18,10 +18,6 @@ const styles = {
         m: 2,
         backgroundColor: '#FFFFFF',
         borderRadius: 2,
-        '&:hover .MuiOutlinedInput-notchedOutline': {
-            position: '',
-            borderColor: '#ff0000',
-        },
     }
 }
 

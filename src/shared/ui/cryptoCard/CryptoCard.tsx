@@ -8,18 +8,18 @@ import {
 } from "@mui/material";
 
 import CloseIcon from '@mui/icons-material/Close';
-import {CryptoDataModel} from "shared/types/cryproData.ts";
-import {removeCoin} from "entities/model/cryptoStore";
+import {CryptoDataModel} from "shared/types/cryproData";
 
 
 interface props {
-    crypto: CryptoDataModel
+    coin: CryptoDataModel;
+    removeSelectCoin: (coin: CryptoDataModel)=>void
 }
 
-export const CryptoCard = ({crypto}: props) => {
+export const CryptoCard = ({removeSelectCoin, coin}: props) => {
 
     const onClose =()=> {
-        removeCoin(crypto);
+        removeSelectCoin(coin);
     }
 
     return (
@@ -38,9 +38,9 @@ export const CryptoCard = ({crypto}: props) => {
                     }
                 />
                 <CardContent>
-                    <Typography gutterBottom variant={'h5'}>{crypto.name}</Typography>
-                    <Typography variant={'h6'}>{crypto.symbol}</Typography>
-                    <Typography variant={'h6'}>Price: {crypto.priceUsd}</Typography>
+                    <Typography gutterBottom variant={'h5'}>{coin.name}</Typography>
+                    <Typography variant={'h6'}>{coin.symbol}</Typography>
+                    <Typography variant={'h6'}>Price: {coin.priceUsd}</Typography>
                 </CardContent>
             </CardActionArea>
         </Card>

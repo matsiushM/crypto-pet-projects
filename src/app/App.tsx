@@ -6,8 +6,8 @@ import {HeaderApp} from "features/header";
 const styles = {
     layoutBox: {
         backgroundColor: "primary.main",
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        height: "100%",
     }
 }
 

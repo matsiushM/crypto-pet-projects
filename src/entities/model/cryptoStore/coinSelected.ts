@@ -13,7 +13,7 @@ export const $selectedCrypto = createStore<CryptoDataModel[]>([])
     )
 
 export const fetchCryptoReposFx = createEffect(() => {
-   const crypto= fetch(`https://api.coincap.io/v2/assets?limit=1000`, {
+   return fetch(`https://api.coincap.io/v2/assets?limit=1000`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -27,9 +27,7 @@ export const fetchCryptoReposFx = createEffect(() => {
             }
         )
         .then(res => res.data)
-        .catch(() => null)
-    console.log(crypto)
-    return crypto
+        .catch((error) => console.error(error))
 });
 
 export const $crypto = createStore<CryptoDataModel[]>([])
