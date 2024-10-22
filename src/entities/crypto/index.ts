@@ -1,1 +1,1 @@
-export {$selectedCrypto,$crypto, fetchCryptoReposFx, addCoin, removeCoin} from './model/coinSelected.ts'
+export * as CryptoModel from './model'

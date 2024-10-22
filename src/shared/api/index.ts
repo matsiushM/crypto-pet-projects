@@ -1,5 +1,5 @@
 export const criptoList = () => {
-    return fetch(`https://api.coincap.io/v2/assets?limit=1000`, {
+    return fetch(`https://api.concap.io/v2/assets?limit=1000`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -13,5 +13,8 @@ export const criptoList = () => {
             }
         )
         .then(res => res.data)
-        .catch((error) => console.error(error))
+        .catch((error) => {
+            console.error(error.message)
+            return error;
+        })
 }

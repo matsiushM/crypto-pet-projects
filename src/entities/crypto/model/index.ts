@@ -1,7 +1,7 @@
 import {createEffect, createEvent, createStore} from "effector";
 import persist from "effector-localstorage";
 
-import {CryptoDataModel} from "shared/types/cryproData";
+import {CryptoDataModel} from "shared/types/cryptoData.ts";
 import {criptoList} from "shared/api";
 
 export const addCoin = createEvent<CryptoDataModel[]>()

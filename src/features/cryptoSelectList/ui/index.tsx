@@ -1,9 +1,9 @@
 import {Box, List} from "@mui/material";
 import {useUnit} from "effector-react";
 
-import {CryptoDataModel} from "shared/types/cryproData";
-import {CryptoCard} from "shared/ui/cryptoCard";
-import {$selectedCrypto, removeCoin} from "entities/crypto";
+import {CryptoDataModel} from "shared/types/cryptoData.ts";
+import {CryptoCard} from "shared/ui/cryptoCard/CryptoCard";
+import {$selectedCrypto, removeCoin} from "entities/crypto/model";
 
 export const CryptoSelectList = () => {
     const coin = useUnit($selectedCrypto)
@@ -24,7 +24,7 @@ export const CryptoSelectList = () => {
                 minWidth: "30%",
             }}>
                 {coin?.map((crypto: CryptoDataModel) => {
-                    return <CryptoCard key={crypto.id} coin={crypto} onRemove={handleRemove}></CryptoCard>
+                    return <CryptoCard key={crypto.id} coin={crypto} onRemove={handleRemove}/>
                 })}
             </List>
         </Box>
