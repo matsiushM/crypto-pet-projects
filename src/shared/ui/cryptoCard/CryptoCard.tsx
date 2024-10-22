@@ -13,13 +13,13 @@ import {CryptoDataModel} from "shared/types/cryproData";
 
 interface props {
     coin: CryptoDataModel;
-    removeSelectCoin: (coin: CryptoDataModel)=>void
+    onRemove: (coin: CryptoDataModel)=>void
 }
 
-export const CryptoCard = ({removeSelectCoin, coin}: props) => {
+export const CryptoCard = ({onRemove, coin}: props) => {
 
-    const onClose =()=> {
-        removeSelectCoin(coin);
+    const handleClose =()=> {
+        onRemove(coin);
     }
 
     return (
@@ -32,7 +32,7 @@ export const CryptoCard = ({removeSelectCoin, coin}: props) => {
                 <CardHeader
                     sx={{p:0}}
                     action={
-                        <IconButton onClick={onClose}>
+                        <IconButton onClick={handleClose}>
                             <CloseIcon/>
                         </IconButton>
                     }

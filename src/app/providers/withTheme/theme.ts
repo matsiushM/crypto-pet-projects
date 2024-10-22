@@ -4,9 +4,7 @@ export const theme = createTheme({
     palette: {
         primary: {
             main: '#001529', // основной цвет
-        },
-        secondary: {
-            main: '#2657da', // вторичный цвет
+            light: '#2657da'
         },
     }
 });

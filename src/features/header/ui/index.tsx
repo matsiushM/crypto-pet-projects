@@ -3,7 +3,7 @@ import {SyntheticEvent, useEffect} from "react";
 import {useUnit} from "effector-react";
 
 import {CryptoDataModel} from "shared/types/cryproData";
-import {$selectedCrypto, $crypto, addCoin, fetchCryptoReposFx} from "entities/model/cryptoStore";
+import {$selectedCrypto, $crypto, addCoin, fetchCryptoReposFx} from "entities/crypto";
 
 const styles = {
     boxHeader: {
@@ -11,7 +11,8 @@ const styles = {
         justifyContent: "space-between",
         alignItems: "center",
         color: "#FFFFFF",
-        backgroundColor: "secondary.main",
+        backgroundColor: "primary.light",
+        height: "10%",
     },
     searchComp: {
         width: '40%',

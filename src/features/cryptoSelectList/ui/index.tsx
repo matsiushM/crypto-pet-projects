@@ -3,17 +3,17 @@ import {useUnit} from "effector-react";
 
 import {CryptoDataModel} from "shared/types/cryproData";
 import {CryptoCard} from "shared/ui/cryptoCard";
-import {$selectedCrypto, removeCoin} from "entities/model/cryptoStore";
+import {$selectedCrypto, removeCoin} from "entities/crypto";
 
 export const CryptoSelectList = () => {
     const coin = useUnit($selectedCrypto)
 
-    if (coin.length === 0) {
-        return null;
+    const handleRemove = (coin: CryptoDataModel) => {
+        removeCoin(coin)
     }
 
-    const removeCrypto = (coin: CryptoDataModel) => {
-        removeCoin(coin)
+    if (coin.length === 0) {
+        return null;
     }
 
     return (
@@ -24,7 +24,7 @@ export const CryptoSelectList = () => {
                 minWidth: "30%",
             }}>
                 {coin?.map((crypto: CryptoDataModel) => {
-                    return <CryptoCard key={crypto.id} coin={crypto} removeSelectCoin={removeCrypto}></CryptoCard>
+                    return <CryptoCard key={crypto.id} coin={crypto} onRemove={handleRemove}></CryptoCard>
                 })}
             </List>
         </Box>

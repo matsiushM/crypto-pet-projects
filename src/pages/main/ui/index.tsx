@@ -4,9 +4,8 @@ import {CryptoSelectList} from "features/cryptoSelectList";
 
 const styles = {
     boxStyle: {
-        color: 'palette.white',
         display: "flex",
-        maxHeight: '90%'
+        height: "100%",
     }
 }
 
