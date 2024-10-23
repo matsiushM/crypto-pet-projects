@@ -2,8 +2,8 @@ import {Autocomplete, Box, TextField} from "@mui/material";
 import {SyntheticEvent, useEffect} from "react";
 import {useUnit} from "effector-react";
 
-import {CryptoDataModel} from "shared/types/cryptoData.ts";
-import {$selectedCrypto, $crypto, addCoin, fetchCryptoReposFx} from "entities/crypto/model";
+import {CryptoDataModel} from "shared/types/cryptoData";
+import {CryptoModel} from 'entities/crypto';
 
 const styles = {
     boxHeader: {
@@ -23,14 +23,14 @@ const styles = {
 }
 
 export const HeaderApp = () => {
-    const [cryptoData, selectCoin] = useUnit([$crypto, $selectedCrypto]);
+    const [cryptoData, selectCoin] = useUnit([CryptoModel.$crypto, CryptoModel.$selectedCrypto]);
 
     useEffect(() => {
-        fetchCryptoReposFx();
+        CryptoModel.fetchCryptoReposFx();
     }, []);
 
     const handleChange = (_: SyntheticEvent<Element, Event>, value: CryptoDataModel[]) => {
-        addCoin(value);
+        CryptoModel.addCoin(value);
     }
 
     return (

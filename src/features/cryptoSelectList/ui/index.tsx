@@ -3,13 +3,13 @@ import {useUnit} from "effector-react";
 
 import {CryptoDataModel} from "shared/types/cryptoData.ts";
 import {CryptoCard} from "shared/ui/cryptoCard/CryptoCard";
-import {$selectedCrypto, removeCoin} from "entities/crypto/model";
+import {CryptoModel} from "entities/crypto";
 
 export const CryptoSelectList = () => {
-    const coin = useUnit($selectedCrypto)
+    const coin = useUnit(CryptoModel.$selectedCrypto)
 
     const handleRemove = (coin: CryptoDataModel) => {
-        removeCoin(coin)
+        CryptoModel.removeCoin(coin)
     }
 
     if (coin.length === 0) {

@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
-import {CryptoDataModel} from "shared/types/cryptoData.ts";
+import {CryptoDataModel} from "shared/types/cryptoData";
 
 interface props {
     coin: CryptoDataModel;
