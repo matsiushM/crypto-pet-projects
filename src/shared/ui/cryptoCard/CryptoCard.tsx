@@ -1,6 +1,5 @@
 import {
     Card,
-    CardActionArea,
     CardContent,
     CardHeader,
     IconButton,
@@ -31,7 +30,7 @@ export const CryptoCard = ({onRemove, coin}: props) => {
 
     return (
         <Card sx={styles.cardBox}>
-            <CardActionArea>
+            {/*<CardActionArea>*/}
                 <CardHeader
                     sx={{p:0}}
                     action={
@@ -45,7 +44,7 @@ export const CryptoCard = ({onRemove, coin}: props) => {
                     <Typography variant={'h6'}>{coin.symbol}</Typography>
                     <Typography variant={'h6'}>Price: {coin.priceUsd}</Typography>
                 </CardContent>
-            </CardActionArea>
+            {/*</CardActionArea>*/}
         </Card>
     )
 }
