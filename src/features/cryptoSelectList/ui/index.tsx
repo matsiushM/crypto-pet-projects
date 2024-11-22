@@ -4,19 +4,18 @@ import {Box, List} from "@mui/material";
 import {CryptoDataModel} from "shared/types/cryptoData";
 import {CryptoCard} from "shared/ui/cryptoCard/CryptoCard";
 import {CryptoModel} from "entities/crypto";
-import {useUpdateCrypto} from "entities/crypto/hooks";
-import {addCoin} from "entities/crypto/model";
+import {useUpdateCryptoPrice} from "entities/crypto/hooks";
 
 interface Props {
     cryptoItems: CryptoDataModel[];
 }
 
 export const CryptoSelectList = ({cryptoItems}:Props) => {
-    const coin = useUpdateCrypto(cryptoItems)
+    const updatedCoins = useUpdateCryptoPrice(cryptoItems)
 
     useEffect(() => {
-        addCoin(coin)
-    }, [coin]);
+        CryptoModel.addCoin(updatedCoins)
+    }, [updatedCoins]);
 
     const handleRemove = (coin: CryptoDataModel) => {
         CryptoModel.removeCoin(coin)
