@@ -3,7 +3,7 @@ import {SyntheticEvent, useEffect} from "react";
 import {useUnit} from "effector-react";
 
 import {CryptoDataModel} from "shared/types/cryptoData";
-import {CryptoModel} from 'entities/crypto';
+import {cryptoModel} from 'entities/crypto';
 
 const styles = {
     boxHeader: {
@@ -23,14 +23,14 @@ const styles = {
 }
 
 export const HeaderApp = () => {
-    const [cryptoData, selectCoin] = useUnit([CryptoModel.$crypto, CryptoModel.$selectedCrypto]);
+    const [cryptoData, selectCoin] = useUnit([cryptoModel.$crypto, cryptoModel.$selectedCrypto]);
 
     useEffect(() => {
-        CryptoModel.fetchCryptoReposFx();
+        cryptoModel.fetchCryptoReposFx();
     }, []);
 
     const handleChange = (_: SyntheticEvent<Element, Event>, value: CryptoDataModel[]) => {
-        CryptoModel.addCoin(value);
+        cryptoModel.addCoin(value);
     }
 
     return (

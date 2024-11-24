@@ -1,1 +1,2 @@
-export * as CryptoModel from './model'
+export * as cryptoModel from './model'
+export * as cryptoHooks from './hooks'

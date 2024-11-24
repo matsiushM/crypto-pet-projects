@@ -1,18 +1,26 @@
+import {useEffect} from "react";
 import {Box, List} from "@mui/material";
-import {useUnit} from "effector-react";
 
-import {CryptoDataModel} from "shared/types/cryptoData.ts";
+import {CryptoDataModel} from "shared/types/cryptoData";
 import {CryptoCard} from "shared/ui/cryptoCard/CryptoCard";
-import {CryptoModel} from "entities/crypto";
+import {cryptoHooks, cryptoModel} from "entities/crypto";
 
-export const CryptoSelectList = () => {
-    const coin = useUnit(CryptoModel.$selectedCrypto)
+interface Props {
+    cryptoItems: CryptoDataModel[];
+}
+
+export const CryptoSelectList = ({cryptoItems}:Props) => {
+    const updatedCoins = cryptoHooks.useUpdateCryptoPrice(cryptoItems)
+
+    useEffect(() => {
+        cryptoModel.addCoin(updatedCoins)
+    }, [updatedCoins]);
 
     const handleRemove = (coin: CryptoDataModel) => {
-        CryptoModel.removeCoin(coin)
+        cryptoModel.removeCoin(coin)
     }
 
-    if (coin.length === 0) {
+    if (cryptoItems.length === 0) {
         return null;
     }
 
@@ -23,7 +31,7 @@ export const CryptoSelectList = () => {
             <List sx={{
                 minWidth: "30%",
             }}>
-                {coin?.map((crypto: CryptoDataModel) => {
+                {cryptoItems.map((crypto: CryptoDataModel) => {
                     return <CryptoCard key={crypto.id} coin={crypto} onRemove={handleRemove}/>
                 })}
             </List>
