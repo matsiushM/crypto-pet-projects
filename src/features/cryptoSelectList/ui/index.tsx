@@ -20,6 +20,10 @@ export const CryptoSelectList = ({cryptoItems}:Props) => {
         cryptoModel.removeCoin(coin)
     }
 
+    const handleClick = (coin: string) => {
+        cryptoModel.selectCryptoToChart(coin)
+    }
+
     if (cryptoItems.length === 0) {
         return null;
     }
@@ -32,7 +36,7 @@ export const CryptoSelectList = ({cryptoItems}:Props) => {
                 minWidth: "30%",
             }}>
                 {cryptoItems.map((crypto: CryptoDataModel) => {
-                    return <CryptoCard key={crypto.id} coin={crypto} onRemove={handleRemove}/>
+                    return <CryptoCard key={crypto.id} coin={crypto} onRemove={handleRemove} onClick={handleClick}/>
                 })}
             </List>
         </Box>
