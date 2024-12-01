@@ -13,7 +13,7 @@ export const $selectedCrypto = createStore<CryptoDataModel[]>([])
         state.filter((item) => item.id !== coin.id)
     )
 
-export const fetchCryptoReposFx = createEffect(() => cryptoList());
+export const fetchCryptoReposFx = createEffect(cryptoList);
 
 export const $crypto = createStore<CryptoDataModel[]>([])
     .on(fetchCryptoReposFx.doneData, (_, crypto) => crypto)

@@ -1,7 +1,7 @@
 import {Box} from "@mui/material";
+import {useUnit} from "effector-react";
 
 import {CryptoSelectList} from "features/cryptoSelectList";
-import {useUnit} from "effector-react";
 import { cryptoModel } from "entities/crypto";
 import { CryptoSelected } from "features/cryptoSelected";
 
