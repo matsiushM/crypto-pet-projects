@@ -23,6 +23,10 @@ export const CryptoChart = ({ prices }: Props) => {
         const maxDataValue = Math.max(...prices.map((item: ChartData) => parseFloat(item.priceUsd)));
         const minDataValue = Math.min(...prices.map((item: ChartData) => parseFloat(item.priceUsd)));
 
+        if(isNaN(minDataValue) || isNaN(maxDataValue)) {
+            return;
+        }
+
         const scaleX = width / (prices.length - 1);
         const scaleY = height / (maxDataValue - minDataValue);
 
@@ -31,7 +35,7 @@ export const CryptoChart = ({ prices }: Props) => {
         drawChartLine(context, prices, scaleX, height, minDataValue, scaleY);
 
         drawAxes(context, width, height);
-        drawLabels(context, prices, minDataValue, scaleY, height);
+        drawLabels(context, minDataValue, maxDataValue, scaleY, height);
     }, [prices]);
 
     return (

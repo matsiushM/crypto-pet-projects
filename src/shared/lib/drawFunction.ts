@@ -51,9 +51,8 @@ export const drawAxes = (context: CanvasRenderingContext2D, width: number, heigh
     context.stroke();
 }
 
-export const drawLabels = (context: CanvasRenderingContext2D, prices: ChartData[], minDataValue: number, scaleY: number, height: number) => {
+export const drawLabels = (context: CanvasRenderingContext2D, minDataValue: number, maxDataValue: number,  scaleY: number, height: number) => {
     const labelInterval = 10;
-    const maxDataValue = Math.max(...prices.map((item: ChartData) => parseFloat(item.priceUsd)));
     const priceStep = (maxDataValue - minDataValue) / labelInterval;
 
     for (let i = 0; i <= labelInterval; i++) {
