@@ -1,11 +1,11 @@
 import {MenuItem, Paper, Select, SelectChangeEvent} from "@mui/material";
 import {useEffect, useState} from "react";
+import {useUnit} from "effector-react/compat";
 
 import {ChartData} from "shared/types/chartData.ts";
 import {cryptoSelectPrice} from "shared/api";
 import {ChartIntervalTime} from "shared/const/chartIntervalTime.ts";
 import {CryptoChart} from "shared/ui/cryptoChart";
-import {useUnit} from "effector-react/compat";
 import {cryptoModel} from "entities/crypto";
 
 const styles = {
