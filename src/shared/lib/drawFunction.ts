@@ -26,11 +26,17 @@ export const drawBackground = (context: CanvasRenderingContext2D, prices: ChartD
 }
 
 export const drawChartLine = (context: CanvasRenderingContext2D, prices: ChartData[], scaleX: number, height: number, minDataValue: number, scaleY: number) => {
+
+    const numberPrice = parseFloat(prices[0].priceUsd)
+
+    if (isNaN(numberPrice)) return;
+
     context.beginPath();
-    context.moveTo(0, height - (parseFloat(prices[0].priceUsd) - minDataValue) * scaleY);
+    context.moveTo(0, height - (numberPrice - minDataValue) * scaleY);
 
     prices.forEach((value: ChartData, index: number) => {
         const price = parseFloat(value.priceUsd);
+        if (isNaN(price)) return;
         context.lineTo(index * scaleX, height - (price - minDataValue) * scaleY);
     });
 
