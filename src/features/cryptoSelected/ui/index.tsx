@@ -2,8 +2,6 @@ import {MenuItem, Paper, Select, SelectChangeEvent} from "@mui/material";
 import {useEffect, useState} from "react";
 import {useUnit} from "effector-react/compat";
 
-import {ChartData} from "shared/types/chartData.ts";
-import {cryptoSelectPrice} from "shared/api";
 import {ChartIntervalTime} from "shared/const/chartIntervalTime.ts";
 import {CryptoChart} from "shared/ui/cryptoChart";
 import {cryptoModel} from "entities/crypto";
@@ -18,12 +16,13 @@ const styles = {
 
 export const CryptoSelected = () => {
     const coin = useUnit(cryptoModel.$cryptoSelectChart)
+    const prices = useUnit(cryptoModel.$cryptoPriceChart)
     const [interval, setInterval] = useState(ChartIntervalTime.h2)
-    const [dataPrice, setDataPrice] = useState<ChartData[]>([])
+    // const [dataPrice, setDataPrice] = useState<ChartData[]>([])
 
     useEffect(() => {
         if (coin) {
-            cryptoSelectPrice(coin, interval).then((data) => setDataPrice(data));
+            cryptoModel.fetchCryptoPriceFx({coin,interval})
         }
     }, [interval, coin])
 
@@ -31,13 +30,13 @@ export const CryptoSelected = () => {
         setInterval(event.target.value as string);
     }
 
-    if(dataPrice.length === 0) {
+    if(prices.length === 0) {
         return null
     }
 
     return (
         <Paper sx={styles.paperStyle}>
-                    <CryptoChart prices={dataPrice}/>
+                    <CryptoChart />
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"

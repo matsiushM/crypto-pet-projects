@@ -3,12 +3,12 @@ import { useEffect, useRef } from "react";
 import {drawAxes, drawBackground, drawChartLine, drawLabels} from "shared/lib/drawFunction";
 
 import { ChartData } from "shared/types/chartData.ts";
+import {cryptoModel} from "entities/crypto";
+import { useUnit } from "effector-react";
 
-interface Props {
-    prices: ChartData[];
-}
 
-export const CryptoChart = ({ prices }: Props) => {
+export const CryptoChart = () => {
+    const prices = useUnit(cryptoModel.$cryptoPriceChart)
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     useEffect(() => {

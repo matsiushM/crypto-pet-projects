@@ -3,3 +3,8 @@ export interface ChartData {
     time: number;
     date: string;
 }
+
+export interface CharDataFetch {
+    coin: string;
+    interval: string;
+}
