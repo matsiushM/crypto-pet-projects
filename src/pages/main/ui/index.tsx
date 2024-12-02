@@ -1,8 +1,9 @@
 import {Box} from "@mui/material";
+import {useUnit} from "effector-react";
 
 import {CryptoSelectList} from "features/cryptoSelectList";
-import {useUnit} from "effector-react";
 import { cryptoModel } from "entities/crypto";
+import { CryptoSelected } from "features/cryptoSelected";
 
 const styles = {
     boxStyle: {
@@ -19,6 +20,7 @@ export const HomePage = () => {
     return (
         <Box sx={styles.boxStyle}>
             <CryptoSelectList cryptoItems={cryptoSelected}/>
+            <CryptoSelected/>
         </Box>
     )
 }

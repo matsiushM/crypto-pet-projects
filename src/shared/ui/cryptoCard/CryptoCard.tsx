@@ -1,5 +1,5 @@
 import {
-    Card,
+    Card, CardActionArea,
     CardContent,
     CardHeader,
     IconButton,
@@ -11,7 +11,8 @@ import {CryptoDataModel} from "shared/types/cryptoData";
 
 interface props {
     coin: CryptoDataModel;
-    onRemove: (coin: CryptoDataModel)=>void
+    onRemove: (coin: CryptoDataModel) => void
+    onClick: (coin:string) => void
 }
 
 const styles = {
@@ -22,16 +23,21 @@ const styles = {
     }
 }
 
-export const CryptoCard = ({onRemove, coin}: props) => {
+export const CryptoCard = ({onRemove, onClick, coin}: props) => {
 
-    const handleClose =()=> {
+    const handleClose = () => {
         onRemove(coin);
+    }
+
+    const handleClick = () => {
+        onClick(coin.id)
     }
 
     return (
         <Card sx={styles.cardBox}>
+            <CardActionArea onClick={handleClick}>
                 <CardHeader
-                    sx={{p:0}}
+                    sx={{p: 0}}
                     action={
                         <IconButton onClick={handleClose}>
                             <CloseIcon/>
@@ -43,6 +49,7 @@ export const CryptoCard = ({onRemove, coin}: props) => {
                     <Typography variant={'h6'}>{coin.symbol}</Typography>
                     <Typography variant={'h6'}>Price: {coin.priceUsd}</Typography>
                 </CardContent>
+            </CardActionArea>
         </Card>
     )
 }
