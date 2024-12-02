@@ -2,8 +2,9 @@ import {createEffect, createEvent, createStore, sample} from "effector";
 import persist from "effector-localstorage";
 
 import {CryptoDataModel} from "shared/types/cryptoData.ts";
-import {cryptoList, cryptoSelectPrice} from "shared/api";
-import {CharDataFetch, ChartData} from "shared/types/chartData.ts";
+import {cryptoList, cryptoSelectPrice, cryptoStockMarket} from "shared/api";
+import {CharDataFetch, ChartData} from "shared/types/chartData";
+import {CryptoStockMarketData} from "shared/types/cryptoStockMarketData";
 
 export const addCoin = createEvent<CryptoDataModel[]>()
 export const removeCoin = createEvent<CryptoDataModel>()
@@ -33,11 +34,16 @@ export const fetchCryptoPriceFx = createEffect(({coin, interval} :CharDataFetch)
 export const $cryptoPriceChart = createStore<ChartData[]>([])
     .on(fetchCryptoPriceFx.doneData, (_, crypto) => crypto);
 
+export const fetchStockMarketFx = createEffect(({coin}:{coin:string}) => cryptoStockMarket(coin))
+
+export const $stockMarketData = createStore<CryptoStockMarketData[]>([])
+    .on(fetchStockMarketFx.doneData, (_, stockMarket) => stockMarket);
+
 sample({
     clock: [selectCryptoToChart, selectIntervalToChart],
     source: $cryptoSelectChart,
-    fn: (data: CharDataFetch) => (data),
-    target: fetchCryptoPriceFx
+    fn: (data: CharDataFetch) => data,
+    target: [fetchCryptoPriceFx,fetchStockMarketFx]
 })
 
 persist({

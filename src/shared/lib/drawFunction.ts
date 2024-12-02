@@ -13,7 +13,7 @@ export const drawBackground = (context: CanvasRenderingContext2D, prices: ChartD
     context.fillRect(0, 0, width, height);
 
     context.strokeStyle = 'rgba(0, 0, 0, 0.1)';
-    context.lineWidth = 0.8;
+    context.lineWidth = 0.6;
     context.setLineDash([5, 5]);
 
     prices.forEach((_, i) => {
