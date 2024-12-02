@@ -1,11 +1,10 @@
 import { Box } from "@mui/material";
 import { useEffect, useRef } from "react";
 import {drawAxes, drawBackground, drawChartLine, drawLabels} from "shared/lib/drawFunction";
+import { useUnit } from "effector-react";
 
 import { ChartData } from "shared/types/chartData.ts";
 import {cryptoModel} from "entities/crypto";
-import { useUnit } from "effector-react";
-
 
 export const CryptoChart = () => {
     const prices = useUnit(cryptoModel.$cryptoPriceChart)
