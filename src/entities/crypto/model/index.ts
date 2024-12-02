@@ -26,7 +26,7 @@ export const selectIntervalToChart = createEvent<string>()
 
 export const $cryptoSelectChart = createStore<CharDataFetch>({coin: '', interval: 'h2'})
     .on(selectCryptoToChart, (dataFetch , coin) => ({...dataFetch, coin: coin}))
-    .on(selectIntervalToChart, (dataFetch , coin) => ({...dataFetch, interval: coin}))
+    .on(selectIntervalToChart, (dataFetch , interval) => ({...dataFetch, interval: interval}))
 
 export const fetchCryptoPriceFx = createEffect(({coin, interval} :CharDataFetch) => cryptoSelectPrice(coin, interval));
 
