@@ -17,7 +17,7 @@ export const CryptoChart = () => {
         if (!context) return;
 
         const width = canvas.width = canvas.offsetWidth;
-        const height = canvas.height = 500;
+        const height = canvas.height = 420;
 
         const maxDataValue = Math.max(...prices.map((item: ChartData) => parseFloat(item.priceUsd)));
         const minDataValue = Math.min(...prices.map((item: ChartData) => parseFloat(item.priceUsd)));
@@ -34,6 +34,7 @@ export const CryptoChart = () => {
         drawChartLine(context, prices, scaleX, height, minDataValue, scaleY);
 
         drawAxes(context, width, height);
+
         drawLabels(context, minDataValue, maxDataValue, scaleY, height);
     }, [prices]);
 
